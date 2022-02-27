@@ -1,0 +1,26 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    networks:
+      - pg-network
+    environment:
+      POSTGRES_PASSWORD: example
+    ports:
+      - 5432
+
+  adminer:
+    image: adminer
+    restart: always
+    networks:
+      - pg-network
+    ports:
+      - 8080:8080
+networks:
+  pg-network:
+    external: true
+      
